@@ -37,6 +37,12 @@ pipelines:
             - name: go_example
           integrations:
             - name: rak_art
+        execution:
+          onStart:
+#           - "buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)"
+            - "pushd $buildDir/golang-example/hello"
+            - "go get -insecure"
+            - popd
              
       # Publish the Go sample app binary to Artifactory
       - name: publish_go_binary
