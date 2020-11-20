@@ -39,7 +39,7 @@ pipelines:
             - name: rak_art
         execution:
           onStart:
-#           - "buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)"
+            - "buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)"
             - "pushd $buildDir/golang-example/hello"
             - "go get -insecure"
             - popd
