@@ -40,7 +40,7 @@ pipelines:
         execution:
           onStart:
 #             - "buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)"
-            - "pushd ."
+            - "pushd go.mod"
             - "go get -insecure"
             - popd
              
