@@ -29,7 +29,7 @@ pipelines:
         configuration:
           environmentVariables:
             JFROG_CLI_BUILD_NAME: go_example_build_publish
-          sourceLocation: go.mod
+          sourceLocation: .
           repository: go_local
           outputLocation: /tmp/dist
           outputFile: hello_gb
@@ -39,9 +39,10 @@ pipelines:
             - name: rak_art
         execution:
           onStart:
-#             - "buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)"
-#             - "pushd go.mod"
-            - "go get -insecure"
+            - buildDir=$(find_resource_variable $inputGitRepoResourceName resourcePath)
+            - echo "******** buildDir - $buildDir"
+            - pushd $buildDir
+            - go get -insecure
             - popd
              
       # Publish the Go sample app binary to Artifactory
